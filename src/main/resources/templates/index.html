@@ -2,12 +2,25 @@
 <html xmlns:th="http://www.springframework.org/schema/mvc">
     <head>
         <title>Title</title>
-        <!--<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>-->
-        <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+        <!--<link rel="stylesheet" type="text/css" href="/css/index.css"/>-->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap-theme.css}"/>
     </head>
     <body>
         <h1>Hello World!</h1>
         <p>This is a test page.</p>
+        <p><span th:text="${message}"></span></p>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="item:${list}">
+                    <span th:text="${item}"></span>
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript" th:src="@{/webjars/jquery/2.1.1/jquery.js}"></script>
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
         <script type="text/javascript" th:src="@{/js/index.js}"></script>
+        <!--<script type="text/javascript" src="/js/index.js"></script>-->
     </body>
 </html>
