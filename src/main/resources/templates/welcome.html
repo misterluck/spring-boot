@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        请输入您的昵称<input type="text" id="username"/><button onclick="connect();">连接服务器</button><br/>
+        请输入发送内容<input type="text" id="message"/><button onclick="sendMessage();">发送</button>
+    </div>
+    <script type="text/javascript" th:src="@{/webjars/jquery/2.1.1/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/welcome.js}"></script>
+</body>
+</html>
