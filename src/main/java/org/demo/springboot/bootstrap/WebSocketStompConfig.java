@@ -10,23 +10,23 @@ import org.springframework.web.socket.config.annotation.*;
  */
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketStompConfig extends AbstractWebSocketMessageBrokerConfigurer {
+public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerConfigurer {
 
     /**
      * 该类继承AbstractWebSocketMessageBrokerConfigurer时注册websocket端点
      */
-    @Override
+    /*@Override
     public void registerStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
         stompEndpointRegistry.addEndpoint("/stompWebSocket").withSockJS();
-    }
+    }*/
 
     /**
      * 该类继承AbstractSessionWebSocketMessageBrokerConfigurer时注册websocket端点
      */
-    /*@Override
+    @Override
     protected void configureStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
         stompEndpointRegistry.addEndpoint("/stompWebSocket").withSockJS();
-    }*/
+    }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
