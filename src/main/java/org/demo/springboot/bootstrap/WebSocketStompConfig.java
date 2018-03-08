@@ -2,6 +2,7 @@ package org.demo.springboot.bootstrap;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.session.ExpiringSession;
 import org.springframework.session.web.socket.config.annotation.AbstractSessionWebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.*;
 
@@ -10,7 +11,7 @@ import org.springframework.web.socket.config.annotation.*;
  */
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerConfigurer {
+public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerConfigurer<ExpiringSession> {
 
     /**
      * 该类继承AbstractWebSocketMessageBrokerConfigurer时注册websocket端点
@@ -25,11 +26,12 @@ public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerC
      */
     @Override
     protected void configureStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
-        stompEndpointRegistry.addEndpoint("/stompWebSocket").withSockJS();
+        stompEndpointRegistry.addEndpoint("/endpointBroadcast").withSockJS();
+        stompEndpointRegistry.addEndpoint("/endpointChat").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/topic");
+        registry.enableSimpleBroker("/topic", "/queue");
     }
 }

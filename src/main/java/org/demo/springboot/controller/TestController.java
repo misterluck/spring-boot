@@ -26,9 +26,14 @@ public class TestController {
         return "index";
     }
 
-    @RequestMapping(value = "/topicClient")
-    public String topicClient() {
-        return "topicClient";
+    @RequestMapping(value = "/broadcast")
+    public String broadcast() {
+        return "broadcast";
+    }
+
+    @RequestMapping(value = "/chat")
+    public String chat() {
+        return "chat";
     }
 
 }
