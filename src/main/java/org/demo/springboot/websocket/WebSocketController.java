@@ -27,7 +27,7 @@ public class WebSocketController {
     public void chatUser(Principal principal, SendToUserMessage sendToUserMessage) {
         System.out.println(sendToUserMessage.getUsername());
         System.out.println(sendToUserMessage.getMessage());
-        simpMessagingTemplate.convertAndSendToUser(principal.getName(), "/queue/notifications", "测试发送消息!");
+        simpMessagingTemplate.convertAndSendToUser(sendToUserMessage.getUsername(), "/queue/notifications", sendToUserMessage.getMessage());
     }
 
 }

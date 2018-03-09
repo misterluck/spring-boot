@@ -1,5 +1,8 @@
 package org.demo.springboot.bean;
 
+/**
+ * 服务端接收发送给指定用户的消息
+ */
 public class SendToUserMessage {
     private String username;
     private String message;

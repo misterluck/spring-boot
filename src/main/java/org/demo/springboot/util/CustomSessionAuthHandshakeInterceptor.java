@@ -10,6 +10,9 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * 用于WebSocket的安装验证
+ */
 public class CustomSessionAuthHandshakeInterceptor implements HandshakeInterceptor {
 
     public static final String HTTP_SESSION_ID_ATTR_NAME = "HTTP.SESSION.ID";
@@ -17,18 +20,20 @@ public class CustomSessionAuthHandshakeInterceptor implements HandshakeIntercept
 
     @Override
     public boolean beforeHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse, WebSocketHandler webSocketHandler, Map<String, Object> attributes) throws Exception {
-        /*if (serverHttpRequest instanceof ServletServerHttpRequest) {
+
+        if(serverHttpRequest instanceof ServletServerHttpRequest) {
             ServletServerHttpRequest servletRequest = (ServletServerHttpRequest)serverHttpRequest;
-            HttpSession session = servletRequest.getServletRequest().getSession(false);
-            if (session != null) {
+            HttpSession session = servletRequest.getServletRequest().getSession();
+            if(session != null) {
+                attributes.put("SPRING.SESSION.ID", session.getId());
                 String uuid = UUID.randomUUID().toString();
                 System.out.println("***************"+uuid);
                 attributes.put("token", uuid);
             }
-        }*/
-        if (attributes.containsKey(HTTP_SESSION_ID_ATTR_NAME)) {
-            attributes.put(SPRING_SESSION_ID_ATTR_NAME, attributes.get(HTTP_SESSION_ID_ATTR_NAME));
         }
+        /*if (attributes.containsKey(HTTP_SESSION_ID_ATTR_NAME)) {
+            attributes.put(SPRING_SESSION_ID_ATTR_NAME, attributes.get(HTTP_SESSION_ID_ATTR_NAME));
+        }*/
         return true;
     }
 

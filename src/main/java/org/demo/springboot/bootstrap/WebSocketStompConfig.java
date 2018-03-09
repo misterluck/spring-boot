@@ -49,7 +49,7 @@ public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerC
     protected void configureStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
         stompEndpointRegistry.addEndpoint("/endpointBroadcast").withSockJS();
         stompEndpointRegistry.addEndpoint("/endpointChat")
-                /*.addInterceptors(new CustomSessionAuthHandshakeInterceptor())*/
+                .addInterceptors(new CustomSessionAuthHandshakeInterceptor())
                 .setHandshakeHandler(new CustomHandshakeHandler())
                 .setAllowedOrigins("*")
                 .withSockJS();

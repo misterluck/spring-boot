@@ -1,5 +1,8 @@
 package org.demo.springboot.bean;
 
+/**
+ * 广播发送客户端的消息
+ */
 public class ClientMessage {
     private String message;
 
