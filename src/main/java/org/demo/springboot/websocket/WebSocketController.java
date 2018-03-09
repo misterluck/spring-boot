@@ -1,6 +1,7 @@
 package org.demo.springboot.websocket;
 
 import org.demo.springboot.bean.ClientMessage;
+import org.demo.springboot.bean.SendToUserMessage;
 import org.demo.springboot.bean.ServerMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -23,9 +24,10 @@ public class WebSocketController {
     }
 
     @MessageMapping(value = "/chat")
-    public void chatUser( String message) {
-        System.out.println(message);
-        //simpMessagingTemplate.convertAndSendToUser(session.getId(), "/queue/notifications", "测试发送消息!");
+    public void chatUser(Principal principal, SendToUserMessage sendToUserMessage) {
+        System.out.println(sendToUserMessage.getUsername());
+        System.out.println(sendToUserMessage.getMessage());
+        simpMessagingTemplate.convertAndSendToUser(principal.getName(), "/queue/notifications", "测试发送消息!");
     }
 
 }

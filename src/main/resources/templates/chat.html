@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+    <button id="connect" onclick="connect();">连接</button>
+    <input id="username" type="text"/><br/>
     <textarea id="message" rows="4" cols="60"></textarea>
     <button id="send">发送</button>
     <div id="output"></div>
@@ -12,22 +14,25 @@
     <script type="text/javascript" th:src="@{/js/stomp.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/jquery/2.1.1/jquery.js}"></script>
     <script type="text/javascript">
-        var socket = new SockJS("/endpointChat");
-        var stomp = Stomp.over(socket);
-        stomp.connect('quest', 'quest', function (frame) {
-            stomp.subscribe("/user/queue/notifications", handleNotification);
-        });
+        var stomp = null;
+        function connect() {
+            var socket = new SockJS("/endpointChat");
+            stomp = Stomp.over(socket);
+            stomp.connect('quest', 'quest', function (frame) {
+                stomp.subscribe("/user/queue/notifications", handleNotification);
+            });
+        }
 
         function handleNotification(message) {
             $("#output").append("<b>Received："+message.body+"</b><br/>");
         }
 
         $("#send").click(function () {
-            sendSpittle($("#message").val());
+            sendSpittle($("#username").val(), $("#message").val());
         });
 
-        function sendSpittle(message) {
-            stomp.send("/chat", {}, JSON.stringify({'message':message}));
+        function sendSpittle(username, message) {
+            stomp.send("/chat", {}, JSON.stringify({'username':username, 'message':message}));
         }
 
     </script>
