@@ -69,6 +69,8 @@ public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerC
                 .setRelayPort(61613)
                 .setClientLogin("guest")
                 .setClientPasscode("guest")
+                .setSystemLogin("guest")
+                .setSystemPasscode("guest")
                 .setSystemHeartbeatSendInterval(5000)
                 .setSystemHeartbeatReceiveInterval(4000);
     }
