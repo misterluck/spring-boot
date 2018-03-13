@@ -32,7 +32,7 @@
         });
 
         function sendSpittle(username, message) {
-            stomp.send("/chat", {}, JSON.stringify({'username':username, 'message':message}));
+            stomp.send("/app/chat", {}, JSON.stringify({'username':username, 'message':message}));
         }
 
     </script>

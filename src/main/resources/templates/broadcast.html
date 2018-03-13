@@ -53,7 +53,7 @@
 
         function send() {
             var message = $('#message').val();
-            stompClient.send("/welcome", {}, JSON.stringify({'message':message}));
+            stompClient.send("/app/welcome", {}, JSON.stringify({'message':message}));
         }
 
     </script>

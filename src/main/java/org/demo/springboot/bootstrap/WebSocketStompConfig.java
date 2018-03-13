@@ -47,16 +47,29 @@ public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerC
      */
     @Override
     protected void configureStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
-        stompEndpointRegistry.addEndpoint("/endpointBroadcast").withSockJS();
+        stompEndpointRegistry.addEndpoint("/endpointBroadcast")
+                .setAllowedOrigins("*")
+                .withSockJS();
         stompEndpointRegistry.addEndpoint("/endpointChat")
+                .setAllowedOrigins("*")
                 .addInterceptors(new CustomSessionAuthHandshakeInterceptor())
                 .setHandshakeHandler(new CustomHandshakeHandler())
-                .setAllowedOrigins("*")
                 .withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/topic", "/queue");
+        /*registry.setApplicationDestinationPrefixes("/app")
+                .setUserDestinationPrefix("/user/")
+                .enableSimpleBroker("/topic", "/queue");*/
+        registry.setApplicationDestinationPrefixes("/app")
+                .setUserDestinationPrefix("/user/")
+                .enableStompBrokerRelay("/topic", "/queue")
+                .setRelayHost("127.0.0.1")
+                .setRelayPort(61613)
+                .setClientLogin("guest")
+                .setClientPasscode("guest")
+                .setSystemHeartbeatSendInterval(5000)
+                .setSystemHeartbeatReceiveInterval(4000);
     }
 }

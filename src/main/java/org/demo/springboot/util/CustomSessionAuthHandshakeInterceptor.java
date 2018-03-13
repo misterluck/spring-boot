@@ -27,7 +27,7 @@ public class CustomSessionAuthHandshakeInterceptor implements HandshakeIntercept
             if(session != null) {
                 attributes.put("SPRING.SESSION.ID", session.getId());
                 String uuid = UUID.randomUUID().toString();
-                System.out.println("***************"+uuid);
+                System.out.println("***************"+uuid+"############"+session.getId());
                 attributes.put("token", uuid);
             }
         }

@@ -24,9 +24,8 @@ public class WebSocketController {
     }
 
     @MessageMapping(value = "/chat")
-    public void chatUser(Principal principal, SendToUserMessage sendToUserMessage) {
-        System.out.println(sendToUserMessage.getUsername());
-        System.out.println(sendToUserMessage.getMessage());
+    public void chatUser(/*Principal principal,*/ SendToUserMessage sendToUserMessage) {
+        System.out.println(sendToUserMessage.getUsername()+"\t"+sendToUserMessage.getMessage());
         simpMessagingTemplate.convertAndSendToUser(sendToUserMessage.getUsername(), "/queue/notifications", sendToUserMessage.getMessage());
     }
 
