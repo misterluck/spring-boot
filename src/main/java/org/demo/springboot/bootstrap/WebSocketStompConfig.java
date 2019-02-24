@@ -59,10 +59,10 @@ public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerC
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        /*registry.setApplicationDestinationPrefixes("/app")
-                .setUserDestinationPrefix("/user/")
-                .enableSimpleBroker("/topic", "/queue");*/
         registry.setApplicationDestinationPrefixes("/app")
+                .setUserDestinationPrefix("/user/")
+                .enableSimpleBroker("/topic", "/queue");
+        /*registry.setApplicationDestinationPrefixes("/app")
                 .setUserDestinationPrefix("/user/")
                 .enableStompBrokerRelay("/topic", "/queue")
                 .setRelayHost("127.0.0.1")
@@ -72,6 +72,6 @@ public class WebSocketStompConfig extends AbstractSessionWebSocketMessageBrokerC
                 .setSystemLogin("guest")
                 .setSystemPasscode("guest")
                 .setSystemHeartbeatSendInterval(5000)
-                .setSystemHeartbeatReceiveInterval(4000);
+                .setSystemHeartbeatReceiveInterval(4000);*/
     }
 }
